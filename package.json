@@ -1,0 +1,30 @@
+{
+  "name": "cursor-agents-apps",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "app-01-shop-quote-studio",
+    "app-02-shift-stock-lite"
+  ],
+  "scripts": {
+    "start": "concurrently -n quote,shift -c blue,magenta \"npm run start -w app-01-shop-quote-studio\" \"npm run start -w app-02-shift-stock-lite\"",
+    "start:prod": "npm run start:prod -w app-01-shop-quote-studio",
+    "install:all": "npm install",
+    "build": "npm run build -w app-01-shop-quote-studio && npm run build -w app-02-shift-stock-lite",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "test": "npm run test -w app-01-shop-quote-studio && npm run test -w app-02-shift-stock-lite",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@types/node": "^22.10.1",
+    "concurrently": "^9.1.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^15.12.0",
+    "prettier": "^3.4.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.16.0"
+  }
+}

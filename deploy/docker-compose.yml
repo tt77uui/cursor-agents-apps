@@ -1,0 +1,31 @@
+services:
+  app01:
+    build:
+      context: ..
+      dockerfile: app-01-shop-quote-studio/Dockerfile
+    ports:
+      - "8081:3001"
+    environment:
+      NODE_ENV: production
+      PORT: "3001"
+      UNLOCK_CODE: ${APP01_UNLOCK_CODE:-demo-pro-unlock-2025}
+      FREE_EXPORT_DAILY_LIMIT: "5"
+    volumes:
+      - app01_data:/repo/app-01-shop-quote-studio/server/data
+
+  app02:
+    build:
+      context: ..
+      dockerfile: app-02-shift-stock-lite/Dockerfile
+    ports:
+      - "8082:3002"
+    environment:
+      NODE_ENV: production
+      PORT: "3002"
+      UNLOCK_CODE: ${APP02_UNLOCK_CODE:-demo-pro-unlock-2025}
+    volumes:
+      - app02_data:/repo/app-02-shift-stock-lite/server/data
+
+volumes:
+  app01_data:
+  app02_data:
