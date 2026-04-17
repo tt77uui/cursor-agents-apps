@@ -4,7 +4,8 @@
   "type": "module",
   "workspaces": [
     "app-01-shop-quote-studio",
-    "app-02-shift-stock-lite"
+    "app-02-shift-stock-lite",
+    "packages/voice-chat"
   ],
   "scripts": {
     "start": "concurrently -n quote,shift -c blue,magenta \"npm run start -w app-01-shop-quote-studio\" \"npm run start -w app-02-shift-stock-lite\"",
@@ -12,7 +13,7 @@
     "install:all": "npm install",
     "build": "npm run build -w app-01-shop-quote-studio && npm run build -w app-02-shift-stock-lite",
     "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
-    "test": "npm run test -w app-01-shop-quote-studio && npm run test -w app-02-shift-stock-lite",
+    "test": "npm run test -w app-01-shop-quote-studio && npm run test -w app-02-shift-stock-lite && npm run test -w voice-chat",
     "format": "prettier --write ."
   },
   "devDependencies": {
