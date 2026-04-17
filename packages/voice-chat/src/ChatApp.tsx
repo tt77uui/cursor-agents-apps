@@ -13,7 +13,7 @@ type ChatMessage = {
 
 function replyForUserText(userText: string): string {
   const t = userText.slice(0, 200);
-  return `（文字回复演示）已收到：「${t}」\n\n接入真实对话时，把此处替换为你的 API 或 Agent 调用即可。`;
+  return `（文字回复演示）已收到：「${t}」\n\n接入真实对话时，把此处替换为你的接口或智能体调用即可。`;
 }
 
 export function ChatApp() {
@@ -22,7 +22,7 @@ export function ChatApp() {
       id: "welcome",
       role: "assistant",
       content:
-        "你好。点击下方麦克风可说中文，转写后会填入输入框；勾选「语音结束自动发送」将直接发出并显示我的文字回复。建议 Chrome + HTTPS 或 localhost。",
+        "你好。点击下方麦克风可说中文，转写后会填入输入框；勾选「语音结束自动发送」将直接发出并显示我的文字回复。建议使用谷歌浏览器，并通过安全连接或本地环境访问。",
     },
   ]);
   const [input, setInput] = useState("");
@@ -94,7 +94,7 @@ export function ChatApp() {
     <div className="vc-shell">
       <header className="vc-header">
         <h1 className="vc-title">语音输入 · 文字回复</h1>
-        <p className="vc-sub">Web Speech API · 麦克风仅用于浏览器内转写</p>
+        <p className="vc-sub">浏览器语音接口 · 麦克风仅用于浏览器内转写</p>
       </header>
 
       <div className="vc-messages" role="log" aria-live="polite">
@@ -121,13 +121,13 @@ export function ChatApp() {
 
       {!speech.isSupported ? (
         <div className="vc-banner">
-          当前环境不支持浏览器语音识别。请换用 <strong>Google Chrome</strong>，或使用下方文字输入。
+          当前环境不支持浏览器语音识别。请换用<strong>谷歌浏览器</strong>，或使用下方文字输入。
         </div>
       ) : null}
 
       {speech.isListening ? (
         <div className="vc-banner vc-banner--listening">
-          正在聆听…（ interim：{speech.interimTranscript || "…"} ）
+          正在聆听…（ 临时转写：{speech.interimTranscript || "…"} ）
         </div>
       ) : null}
 

@@ -46,7 +46,7 @@ export const TEMPLATES: QuoteTemplate[] = [
   },
   {
     id: "quote_pro_bundle",
-    name: "服务套餐报价（Pro）",
+    name: "服务套餐报价（专业版）",
     description: "多行套餐项，适合美甲/清洁套餐",
     proOnly: true,
     disclaimer: "本页内容为模板草稿，不构成法律意见；套餐与价格以您店内公示为准。",

@@ -45,7 +45,7 @@ function mapError(code: string): SpeechToTextError {
 function userFacingMessage(err: SpeechToTextError): string {
   switch (err) {
     case "not_supported":
-      return "当前浏览器不支持语音识别。请使用 Chrome，或改用文字输入。";
+      return "当前浏览器不支持语音识别。请使用谷歌浏览器，或改用文字输入。";
     case "permission_denied":
       return "麦克风权限被拒绝。请在地址栏旁允许麦克风后重试。";
     case "no_speech":

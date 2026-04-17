@@ -346,17 +346,17 @@ export function createApp(config: App02Config) {
         .all() as { name: string; qty: number; threshold: number; unit: string }[];
 
       const lines: string[] = [];
-      lines.push("section,employee,date,slot,note");
+      lines.push("类别,员工,日期,班次,备注");
       for (const s of shifts) {
         lines.push(
-          `shift,${csv(s.employee)},${csv(s.date)},${csv(s.slot)},${csv(s.note ?? "")}`
+          `排班,${csv(s.employee)},${csv(s.date)},${csv(s.slot)},${csv(s.note ?? "")}`
         );
       }
       lines.push("");
-      lines.push("section,name,qty,threshold,unit,low");
+      lines.push("类别,品名,数量,阈值,单位,低库存");
       for (const it of stock) {
-        const low = it.threshold > 0 && it.qty <= it.threshold ? "YES" : "NO";
-        lines.push(`stock,${csv(it.name)},${it.qty},${it.threshold},${csv(it.unit)},${low}`);
+        const low = it.threshold > 0 && it.qty <= it.threshold ? "是" : "否";
+        lines.push(`库存,${csv(it.name)},${it.qty},${it.threshold},${csv(it.unit)},${low}`);
       }
       res.type("text/csv; charset=utf-8").send(lines.join("\n"));
     } finally {

@@ -185,13 +185,13 @@ export function App() {
         <div>
           <div style={{ fontWeight: 800 }}>排班库存轻助手</div>
           <div style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>
-            小团队排班 + 低库存提醒（不上 HR 全套）
+            小团队排班 + 低库存提醒（不上人事全套）
           </div>
         </div>
         <div className="row">
           <span className="badge">
-            Pro：{meta?.proUnlocked ? "已解锁" : "未解锁"} · 员工 {String(meta?.employees ?? "-")}/
-            {String(meta?.employeeCap ?? "-")} · 库存 SKU {String(meta?.stockItems ?? "-")}/
+            专业版：{meta?.proUnlocked ? "已解锁" : "未解锁"} · 员工 {String(meta?.employees ?? "-")}/
+            {String(meta?.employeeCap ?? "-")} · 库存品类 {String(meta?.stockItems ?? "-")}/
             {String(meta?.stockCap ?? "-")} · 低库存 {String(meta?.lowStockAlerts ?? "-")}
           </span>
           <button className="primary" onClick={() => load()} disabled={busy}>
@@ -290,7 +290,7 @@ export function App() {
           </div>
           <div style={{ height: 10 }} />
           <button className="primary" onClick={addStock} disabled={busy || !stockName}>
-            添加 SKU
+            添加品类
           </button>
 
           <div style={{ height: 12 }} />
@@ -311,12 +311,12 @@ export function App() {
           <h3 style={{ margin: 0 }}>周视图</h3>
           <div className="row">
             <button onClick={exportCsv} disabled={busy}>
-              导出 CSV（周）
+              导出表格（周）
             </button>
           </div>
         </div>
         <div className="banner">
-          免费版限制：员工/库存数量与导出次数；Pro 解锁更高上限。演示解锁码见 README。
+          免费版限制：员工/库存数量与导出次数；专业版解锁更高上限。演示解锁码见说明文档。
         </div>
         <div style={{ overflowX: "auto" }}>
           <table>
@@ -444,7 +444,7 @@ export function App() {
       </section>
 
       <section className="card" style={{ marginTop: 14 }}>
-        <h3 style={{ marginTop: 0 }}>解锁 Pro</h3>
+        <h3 style={{ marginTop: 0 }}>解锁专业版</h3>
         <div className="row">
           <input value={unlock} onChange={(e) => setUnlock(e.target.value)} placeholder="解锁码" />
           <button className="primary" onClick={doUnlock} disabled={busy}>

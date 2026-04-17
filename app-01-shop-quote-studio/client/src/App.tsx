@@ -167,7 +167,7 @@ export function App() {
         </div>
         <div className="row">
           <span className="badge">
-            Pro：{meta?.proUnlocked ? "已解锁" : "未解锁"} · 今日导出{" "}
+            专业版：{meta?.proUnlocked ? "已解锁" : "未解锁"} · 今日导出{" "}
             {meta?.exportCountToday ?? "-"} / {meta?.proUnlocked ? "∞" : meta?.exportLimitFree}
           </span>
           <button className="primary" onClick={() => loadAll()} disabled={busy}>
@@ -190,7 +190,7 @@ export function App() {
             {templates.map((t) => (
               <option key={t.id} value={t.id}>
                 {t.name}
-                {t.proOnly ? " (Pro)" : ""}
+                {t.proOnly ? "（专业版）" : ""}
               </option>
             ))}
           </select>
@@ -224,7 +224,7 @@ export function App() {
         </section>
 
         <section className="card">
-          <h3 style={{ marginTop: 0 }}>解锁 Pro / 预览</h3>
+          <h3 style={{ marginTop: 0 }}>解锁专业版 / 预览</h3>
           <label>解锁码（演示环境；上线后由已授权支付发码）</label>
           <div className="row">
             <input value={unlockCode} onChange={(e) => setUnlockCode(e.target.value)} />
