@@ -5,7 +5,8 @@
   "workspaces": [
     "app-01-shop-quote-studio",
     "app-02-shift-stock-lite",
-    "packages/voice-chat"
+    "packages/voice-chat",
+    "packages/multi-agent"
   ],
   "scripts": {
     "start": "concurrently -n quote,shift -c blue,magenta \"npm run start -w app-01-shop-quote-studio\" \"npm run start -w app-02-shift-stock-lite\"",
@@ -13,8 +14,9 @@
     "install:all": "npm install",
     "build": "npm run build -w app-01-shop-quote-studio && npm run build -w app-02-shift-stock-lite",
     "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
-    "test": "npm run test -w app-01-shop-quote-studio && npm run test -w app-02-shift-stock-lite && npm run test -w voice-chat",
-    "format": "prettier --write ."
+    "test": "npm run test -w app-01-shop-quote-studio && npm run test -w app-02-shift-stock-lite && npm run test -w voice-chat && npm run test -w multi-agent",
+    "format": "prettier --write .",
+    "multi-agent": "npm run build -w multi-agent && node ./packages/multi-agent/dist/cli.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
