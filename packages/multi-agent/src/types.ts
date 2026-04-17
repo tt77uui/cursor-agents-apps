@@ -1,4 +1,17 @@
-export type AgentId = "researcher" | "reviewer" | "synthesizer";
+export type SimpleAgentId = "researcher" | "reviewer" | "synthesizer";
+
+export type SkillAgentId =
+  | "discovery-analyst"
+  | "systems-architect"
+  | "prompt-architect"
+  | "engineer"
+  | "qa-guardian"
+  | "risk-compliance"
+  | "delivery-editor"
+  | "reviewer-board"
+  | "orchestrator";
+
+export type AgentId = SimpleAgentId | SkillAgentId;
 
 export type ChatRole = "system" | "user" | "assistant";
 
@@ -18,6 +31,7 @@ export interface OrchestrationResult {
   task: string;
   turns: AgentTurn[];
   finalAnswer: string;
+  team?: "simple" | "skill";
 }
 
 export interface LlmCompleteInput {

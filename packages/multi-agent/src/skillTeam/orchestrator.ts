@@ -1,8 +1,9 @@
-import { runAgentPipeline } from "./agents.js";
-import type { LlmClient, OrchestrationResult } from "./types.js";
-import { MessageBus } from "./messageBus.js";
+import { runAgentPipeline } from "../agents.js";
+import type { LlmClient, OrchestrationResult } from "../types.js";
+import { MessageBus } from "../messageBus.js";
+import { SKILL_TEAM_PIPELINE } from "./pipeline.js";
 
-export class Orchestrator {
+export class SkillTeamOrchestrator {
   constructor(
     private readonly llm: LlmClient,
     private readonly bus: MessageBus = new MessageBus(),
@@ -20,7 +21,8 @@ export class Orchestrator {
 
     this.bus.publish("task:received", { task: trimmed });
 
-    const pipelineTurns = await runAgentPipeline(trimmed, this.llm, [], {
+    const turns = await runAgentPipeline(trimmed, this.llm, [], {
+      pipeline: SKILL_TEAM_PIPELINE,
       hooks: {
         onAgentStart: (agentId) => {
           this.bus.publish("agent:started", { agentId, task: trimmed });
@@ -34,9 +36,14 @@ export class Orchestrator {
       },
     });
 
-    const finalAnswer = pipelineTurns[pipelineTurns.length - 1]?.output ?? "";
+    const finalAnswer = turns[turns.length - 1]?.output ?? "";
     this.bus.publish("orchestration:finished", { snippet: finalAnswer.slice(0, 240) });
 
-    return { task: trimmed, turns: pipelineTurns, finalAnswer, team: "simple" };
+    return {
+      task: trimmed,
+      turns,
+      finalAnswer,
+      team: "skill",
+    };
   }
 }
